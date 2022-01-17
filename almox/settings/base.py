@@ -20,6 +20,10 @@ INSTALLED_APPS = [
     "rest_framework",
     "stands",
     "users",
+    "persons",
+    "measurement_units",
+    "products",
+    "transactions",
 ]
 
 MIDDLEWARE = [

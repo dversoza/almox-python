@@ -8,7 +8,10 @@ class BaseModel(models.Model):
         "auth.User", on_delete=models.CASCADE, related_name="created_%(class)ss"
     )
     updated_by = models.ForeignKey(
-        "auth.User", on_delete=models.CASCADE, related_name="updated_%(class)ss"
+        "auth.User",
+        on_delete=models.CASCADE,
+        related_name="updated_%(class)ss",
+        null=True,
     )
 
     class Meta:
