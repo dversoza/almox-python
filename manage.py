@@ -1,9 +1,6 @@
 import os
 import sys
 
-import dotenv
-
-dotenv.load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "almox.settings.development")
