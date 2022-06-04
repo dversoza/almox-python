@@ -18,3 +18,7 @@ class ProductAdmin(BaseAdmin):
         ),
         *BaseAdmin.fieldsets,
     )
+
+    def changelist_view(self, request):
+        extra_context = {"title": "Produtos"}
+        return super().changelist_view(request, extra_context)

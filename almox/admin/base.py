@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-admin.site.site_header = "Gerenciamento de informação do Almoxarifado"
+admin.site.site_header = "Gerenciamento Almoxarifado"
 admin.site.site_title = "Almox Admin"
 admin.site.index_title = "Almox Admin"
 

@@ -150,7 +150,8 @@ cython_debug/
 # VS Code configuration
 .vscode/
 
-# Dev databases
+# Dev static
 *.sqlite3
 *.sqlite3-journal
 db/
+static/

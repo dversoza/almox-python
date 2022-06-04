@@ -18,3 +18,7 @@ class StandAdmin(BaseAdmin):
         ),
         *BaseAdmin.fieldsets,
     )
+
+    def changelist_view(self, request):
+        extra_context = {"title": "Barracas"}
+        return super().changelist_view(request, extra_context)

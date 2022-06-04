@@ -59,6 +59,10 @@ class TransactionAdmin(BaseAdmin):
         *BaseAdmin.fieldsets,
     )
 
+    def changelist_view(self, request):
+        extra_context = {"title": "Movimentações"}
+        return super().changelist_view(request, extra_context)
+
 
 @admin.register(TransactionType)
 class TransactionTypeAdmin(admin.ModelAdmin):
@@ -66,3 +70,7 @@ class TransactionTypeAdmin(admin.ModelAdmin):
     list_display_links = ("name",)
     search_fields = ("name", "description")
     ordering = ("id",)
+
+    def changelist_view(self, request):
+        extra_context = {"title": "Tipos de Movimentação"}
+        return super().changelist_view(request, extra_context)

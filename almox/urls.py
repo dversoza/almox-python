@@ -20,5 +20,5 @@ router.register(r"measurement-units", MeasurementUnitViewSet)
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/", include("rest_framework.urls", namespace="rest_framework")),
-    path("", include(router.urls)),
+    path("api/", include(router.urls)),
 ]
