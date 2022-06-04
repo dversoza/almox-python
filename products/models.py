@@ -5,8 +5,10 @@ from measurement_units.models import MeasurementUnit
 
 
 class Product(BaseModel):
-    name = models.CharField("Nome", max_length=100)
-    description = models.TextField("Descrição", blank=True)
+    name = models.CharField("Nome", max_length=100, unique=True)
+    description = models.TextField(
+        "Descrição", blank=True, help_text="Descrição do produto"
+    )
     measurement_unit = models.ForeignKey(
         MeasurementUnit, on_delete=models.PROTECT, verbose_name="Unidade de Medida"
     )
@@ -15,6 +17,6 @@ class Product(BaseModel):
         return self.name
 
     class Meta:
-        verbose_name = "Product"
-        verbose_name_plural = "Products"
+        verbose_name = "Produto"
+        verbose_name_plural = "Produtos"
         ordering = ["name"]

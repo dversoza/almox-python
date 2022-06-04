@@ -10,35 +10,92 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('stands', '0001_initial'),
+        ("stands", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('persons', '0001_initial'),
-        ('products', '0001_initial'),
+        ("persons", "0001_initial"),
+        ("products", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Transaction',
+            name="Transaction",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('operation', models.CharField(choices=[('E', 'Entrada'), ('S', 'Saida')], default='S', max_length=1)),
-                ('type', models.CharField(choices=[('I', 'Interna'), ('C', 'Compra'), ('D', 'Doação'), ('R', 'Devolução')], default='I', max_length=1)),
-                ('quantity', models.FloatField()),
-                ('price', models.FloatField()),
-                ('observation', models.TextField(blank=True, null=True)),
-                ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='created_%(class)ss', to=settings.AUTH_USER_MODEL)),
-                ('person', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='persons.person')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.product')),
-                ('stand', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='stands.stand')),
-                ('updated_by', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='updated_%(class)ss', to=settings.AUTH_USER_MODEL)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "operation",
+                    models.CharField(
+                        choices=[("E", "Entrada"), ("S", "Saida")],
+                        default="S",
+                        max_length=1,
+                    ),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("I", "Interna"),
+                            ("C", "Compra"),
+                            ("D", "Doação"),
+                            ("R", "Devolução"),
+                        ],
+                        default="I",
+                        max_length=1,
+                    ),
+                ),
+                ("quantity", models.FloatField()),
+                ("price", models.IntegerField()),
+                ("observation", models.TextField(blank=True, null=True)),
+                (
+                    "created_by",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="created_%(class)ss",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "person",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="persons.person"
+                    ),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="products.product",
+                    ),
+                ),
+                (
+                    "stand",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="stands.stand"
+                    ),
+                ),
+                (
+                    "updated_by",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="updated_%(class)ss",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Transaction',
-                'verbose_name_plural': 'Transactions',
-                'ordering': ['-created_at'],
+                "verbose_name": "Transaction",
+                "verbose_name_plural": "Transactions",
+                "ordering": ["-created_at"],
             },
         ),
     ]
