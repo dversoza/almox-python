@@ -1,13 +1,12 @@
+from apps.measurement_units.views import MeasurementUnitViewSet
+from apps.persons.views import PersonViewSet
+from apps.products.views import ProductViewSet
+from apps.stands.views import StandViewSet
+from apps.transactions.views import TransactionViewSet
+from apps.users.views import AlmoxAuthTokenView, UserViewSet
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework import routers
-
-from measurement_units.views import MeasurementUnitViewSet
-from persons.views import PersonViewSet
-from products.views import ProductViewSet
-from stands.views import StandViewSet
-from transactions.views import TransactionViewSet
-from users.views import UserViewSet
 
 router = routers.DefaultRouter()
 router.register(r"stands", StandViewSet)
@@ -21,4 +20,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("api/", include(router.urls)),
+    path("api/auth/", AlmoxAuthTokenView.as_view(), name="api-token-auth"),
 ]

@@ -21,20 +21,24 @@ DATABASES = {
 
 # Application definition
 INSTALLED_APPS = [
+    # Django apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # DRF apps
     "rest_framework",
+    "rest_framework.authtoken",
     "corsheaders",
-    "stands",
-    "users",
-    "persons",
-    "measurement_units",
-    "products",
-    "transactions",
+    # Almox apps
+    "apps.measurement_units",
+    "apps.stands",
+    "apps.users",
+    "apps.persons",
+    "apps.products",
+    "apps.transactions",
 ]
 
 MIDDLEWARE = [
