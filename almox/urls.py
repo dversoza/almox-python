@@ -9,12 +9,14 @@ from django.urls import include, path
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r"stands", StandViewSet)
-router.register(r"users", UserViewSet)
-router.register(r"persons", PersonViewSet)
-router.register(r"products", ProductViewSet)
-router.register(r"transactions", TransactionViewSet)
-router.register(r"measurement-units", MeasurementUnitViewSet)
+router.register(r"stands", StandViewSet, basename="stands")
+router.register(r"users", UserViewSet, basename="users")
+router.register(r"persons", PersonViewSet, basename="persons")
+router.register(r"products", ProductViewSet, basename="products")
+router.register(r"transactions", TransactionViewSet, basename="transactions")
+router.register(
+    r"measurement-units", MeasurementUnitViewSet, basename="measurement-units"
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),

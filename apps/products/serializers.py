@@ -11,4 +11,4 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = ["id", "name", "description", "measurement_unit", "stock"]
 
     def get_stock(self, product):
-        return product.transaction_set.get_stock(product=product)
+        return product.transaction_set.get_stock_for_product(product=product)

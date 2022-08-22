@@ -4,7 +4,7 @@ from apps.core.permissions import IsOwnerOrReadOnly
 from apps.core.viewset import AlmoxModelViewSet
 
 from .models import Stand
-from .serializers import StandSerializer
+from .serializers import StandDetailSerializer, StandSerializer
 
 
 class StandViewSet(AlmoxModelViewSet):
@@ -13,5 +13,10 @@ class StandViewSet(AlmoxModelViewSet):
     """
 
     queryset = Stand.objects.all()
-    serializer_class = StandSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
+    def get_serializer_class(self, *args, **kwargs):
+        if self.action == "retrieve":
+            return StandDetailSerializer
+
+        return StandSerializer
