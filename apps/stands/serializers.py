@@ -13,6 +13,6 @@ class StandSerializer(serializers.ModelSerializer):
 
     def get_manager(self, obj):
         # ignore stand attribute from manager to avoid circular reference
-        from persons.serializers import ManagerSerializer
+        from apps.persons.serializers import ManagerSerializer
 
         return ManagerSerializer(obj.manager).data
