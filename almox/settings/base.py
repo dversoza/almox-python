@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     # Almox apps
-    "apps.measurement_units",
+    "apps.core",
     "apps.stands",
     "apps.users",
     "apps.persons",

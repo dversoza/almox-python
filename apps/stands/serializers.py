@@ -1,14 +1,16 @@
 from rest_framework import serializers
 
+from apps.core.serializers import BaseSerializer
+
 from .models import Stand
 
 
-class StandSerializer(serializers.ModelSerializer):
+class StandSerializer(BaseSerializer):
     manager = serializers.SerializerMethodField()
 
     class Meta:
         model = Stand
-        fields = "__all__"
+        fields = ["id", "name", "active", "contact", "manager"]
         depth = 1
 
     def get_manager(self, stand):

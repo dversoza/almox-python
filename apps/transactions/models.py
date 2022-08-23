@@ -8,7 +8,16 @@ from apps.stands.models import Stand
 from .managers import TransactionManager
 
 
-class TransactionType(models.Model):
+OPERATIONS = [("E", "Entrada"), ("S", "Saida")]
+
+
+class TransactionType(BaseModel):
+    operation = models.CharField(
+        max_length=1,
+        choices=OPERATIONS,
+        verbose_name="Operação",
+        help_text="Entrada: produtos entrando no almoxarifado<br>Saída: produtos saindo do almoxarifado",
+    )
     name = models.CharField(
         max_length=100, unique=True, null=False, verbose_name="Nome"
     )
@@ -33,8 +42,6 @@ class TransactionType(models.Model):
 
 
 class Transaction(BaseModel):
-    OPERATIONS = [("E", "Entrada"), ("S", "Saida")]
-
     datetime = models.DateTimeField(
         null=False,
         verbose_name="Data e Hora",
@@ -58,14 +65,14 @@ class Transaction(BaseModel):
         help_text="Entrada: produtos entrando no almoxarifado<br>Saída: produtos saindo do almoxarifado",
     )
     type = models.ForeignKey(
-        TransactionType, on_delete=models.CASCADE, verbose_name="Tipo"
+        TransactionType, on_delete=models.PROTECT, verbose_name="Tipo"
     )
     quantity = models.FloatField(verbose_name="Quantidade")
     price = models.IntegerField(
         verbose_name="Preço",
         help_text="Valor global da movimentação <b>em centavos</b>; 0 (zero) para saídas internas e devoluções",
     )
-    observation = models.TextField(blank=True, null=True, verbose_name="Observações")
+    details = models.TextField(blank=True, null=True, verbose_name="Observações")
 
     objects = TransactionManager()
 

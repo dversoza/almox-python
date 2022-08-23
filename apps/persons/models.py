@@ -25,8 +25,8 @@ class Person(BaseModel):
         "stands.Stand",
         on_delete=models.CASCADE,
         related_name="staff",
-        null=True,
         verbose_name="Barraca",
+        null=True,
         blank=True,
         help_text="Selecione a barraca em que a pessoa trabalha.",
     )

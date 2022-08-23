@@ -1,9 +1,17 @@
 from rest_framework import serializers
 
-from .models import Product
+from apps.core.serializers import BaseSerializer
+
+from .models import MeasurementUnit, Product
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class MeasurementUnitSerializer(BaseSerializer):
+    class Meta:
+        model = MeasurementUnit
+        fields = ["id", "name", "abbreviation"]
+
+
+class ProductSerializer(BaseSerializer):
     stock = serializers.SerializerMethodField()
 
     class Meta:

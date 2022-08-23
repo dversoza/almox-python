@@ -1,8 +1,7 @@
-from apps.measurement_units.views import MeasurementUnitViewSet
 from apps.persons.views import PersonViewSet
-from apps.products.views import ProductViewSet
+from apps.products.views import MeasurementUnitViewSet, ProductViewSet
 from apps.stands.views import StandViewSet
-from apps.transactions.views import TransactionViewSet
+from apps.transactions.views import TransactionTypeViewSet, TransactionViewSet
 from apps.users.views import AlmoxAuthTokenView, UserViewSet
 from django.contrib import admin
 from django.urls import include, path
@@ -15,7 +14,10 @@ router.register(r"persons", PersonViewSet, basename="persons")
 router.register(r"products", ProductViewSet, basename="products")
 router.register(r"transactions", TransactionViewSet, basename="transactions")
 router.register(
-    r"measurement-units", MeasurementUnitViewSet, basename="measurement-units"
+    r"transactions/types", TransactionTypeViewSet, basename="transaction_types"
+)
+router.register(
+    r"products/measurement-units", MeasurementUnitViewSet, basename="measurement-units"
 )
 
 urlpatterns = [
