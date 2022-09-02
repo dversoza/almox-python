@@ -6,6 +6,7 @@ WORKDIR /app
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV DJANGO_SETTINGS_MODULE=almox.settings.staging
 
 # install dependencies
 RUN pip install --upgrade pip
