@@ -24,7 +24,10 @@ class UserSerializer(serializers.ModelSerializer):
                 "name": user.person.name,
             }
         except User.person.RelatedObjectDoesNotExist:
-            return None
+            return {
+                "id": None,
+                "name": user.first_name,
+            }
 
 
 class GroupSerializer(serializers.ModelSerializer):
