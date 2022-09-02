@@ -7,7 +7,7 @@ class BaseSerializer(serializers.ModelSerializer):
     updated_by = serializers.SerializerMethodField()
 
     def get_created_by(self, obj):
-        return obj.created_by.email
+        return obj.created_by.email if obj.created_by else None
 
     def get_updated_by(self, obj):
-        return obj.updated_by.email
+        return obj.updated_by.email if obj.updated_by else None

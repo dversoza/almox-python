@@ -3,9 +3,7 @@ from rest_framework import serializers
 
 
 class UserSerializer(serializers.ModelSerializer):
-    from apps.persons.serializers import PersonSerializer
-
-    person = PersonSerializer()
+    person = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -18,6 +16,12 @@ class UserSerializer(serializers.ModelSerializer):
             "groups",
             "person",
         ]
+
+    def get_person(self, user):
+        return {
+            "id": user.person.id,
+            "name": user.person.name,
+        }
 
 
 class GroupSerializer(serializers.ModelSerializer):

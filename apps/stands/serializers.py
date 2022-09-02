@@ -7,17 +7,22 @@ from .models import Stand
 
 class StandSerializer(BaseSerializer):
     manager = serializers.SerializerMethodField()
+    manager_id = serializers.IntegerField(write_only=True)
 
     class Meta:
         model = Stand
-        fields = ["id", "name", "active", "contact", "manager"]
+        fields = "__all__"
         depth = 1
 
     def get_manager(self, stand):
-        # ignore stand attribute from manager to avoid circular reference
-        from apps.persons.serializers import ManagerSerializer
-
-        return ManagerSerializer(stand.manager).data
+        return (
+            {
+                "id": stand.manager.id,
+                "name": stand.manager.name,
+            }
+            if stand.manager
+            else None
+        )
 
 
 class StandDetailSerializer(StandSerializer):

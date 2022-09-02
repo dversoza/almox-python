@@ -13,6 +13,7 @@ class MeasurementUnitSerializer(BaseSerializer):
 
 class ProductSerializer(BaseSerializer):
     stock = serializers.SerializerMethodField()
+    measurement_unit = MeasurementUnitSerializer()
 
     class Meta:
         model = Product
