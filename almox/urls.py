@@ -4,6 +4,7 @@ from apps.stands.views import StandViewSet
 from apps.transactions.views import TransactionTypeViewSet, TransactionViewSet
 from apps.users.views import AlmoxAuthTokenView, UserViewSet
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import include, path
 from rest_framework import routers
 
@@ -21,6 +22,7 @@ router.register(
 )
 
 urlpatterns = [
+    path("", lambda req: redirect("/api/")),
     path("admin/", admin.site.urls),
     path("auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("api/", include(router.urls)),
