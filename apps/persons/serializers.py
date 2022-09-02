@@ -12,18 +12,25 @@ class PersonSerializer(BaseSerializer):
 
     class Meta:
         model = Person
-        fields = ["id", "name", "is_business", "phone", "document", "stand", "user"]
+        fields = [
+            "id",
+            "name",
+            "is_business",
+            "phone",
+            "document",
+            "user",
+            "stand",
+            "stand_id",
+        ]
 
     def get_user(self, person):
-        return (
-            {
+        if person.user:
+            return {
                 "id": person.user.id,
                 "username": person.user.username,
                 "email": person.user.email,
             }
-            if person.user
-            else None
-        )
+        return None
 
 
 class ManagerSerializer(BaseSerializer):

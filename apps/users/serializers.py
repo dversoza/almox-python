@@ -18,10 +18,13 @@ class UserSerializer(serializers.ModelSerializer):
         ]
 
     def get_person(self, user):
-        return {
-            "id": user.person.id,
-            "name": user.person.name,
-        }
+        try:
+            return {
+                "id": user.person.id,
+                "name": user.person.name,
+            }
+        except User.person.RelatedObjectDoesNotExist:
+            return None
 
 
 class GroupSerializer(serializers.ModelSerializer):
