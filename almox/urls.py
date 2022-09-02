@@ -14,10 +14,10 @@ router.register(r"persons", PersonViewSet, basename="persons")
 router.register(r"products", ProductViewSet, basename="products")
 router.register(r"transactions", TransactionViewSet, basename="transactions")
 router.register(
-    r"transactions/types", TransactionTypeViewSet, basename="transaction_types"
+    r"transaction-types", TransactionTypeViewSet, basename="transaction-types"
 )
 router.register(
-    r"products/measurement-units", MeasurementUnitViewSet, basename="measurement-units"
+    r"measurement-units", MeasurementUnitViewSet, basename="measurement-units"
 )
 
 urlpatterns = [
