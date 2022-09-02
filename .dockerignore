@@ -1,4 +1,5 @@
 .idea
 .venv
 .vscode
+.sqlite3
 db
