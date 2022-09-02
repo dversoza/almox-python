@@ -1,5 +1,6 @@
 # Activate virtual environment
-if [[ "$VIRTUAL_ENV" = "" ]] then
+if [[ "$VIRTUAL_ENV" = "" ]]
+then
     source .venv/bin/activate
 fi
 
@@ -11,5 +12,5 @@ python manage.py migrate
 python manage.py collectstatic --noinput
 
 # Start server
-systemctl restart gunicorn.socket
+systemctl restart gunicorn.service
 systemctl reload nginx.service
