@@ -23,5 +23,8 @@ DATABASES = {
         "USER": os.getenv("PROD_DB_USER"),
         "PASSWORD": os.getenv("PROD_DB_PASSWORD"),
         "NAME": os.getenv("PROD_DB_NAME"),
+        "OPTIONS": {
+            "use_returning_into": False,
+        },
     }
 }

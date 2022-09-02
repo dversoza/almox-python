@@ -15,8 +15,5 @@ DATABASES = {
         "NAME": os.getenv("STAGE_DB_NAME"),
         "HOST": os.getenv("STAGE_DB_HOST"),
         "PORT": os.getenv("STAGE_DB_PORT"),
-        "OPTIONS": {
-            "use_returning_into": False,
-        },
     }
 }
