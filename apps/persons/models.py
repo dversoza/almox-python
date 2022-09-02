@@ -31,7 +31,12 @@ class Person(BaseModel):
         help_text="Selecione a barraca em que a pessoa trabalha.",
     )
     user = models.OneToOneField(
-        User, on_delete=models.PROTECT, null=True, blank=True, verbose_name="Usuário"
+        User,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        verbose_name="Usuário",
+        related_name="person",
     )
 
     def __str__(self):
