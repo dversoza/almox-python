@@ -1,6 +1,4 @@
-""" This module contains the view for the Github Webhook. """
-from typing import Any
-
+""" Module for the Github Webhook View. """
 from django.http import HttpRequest, HttpResponse
 from django.utils.decorators import method_decorator
 from django.views import View
