@@ -1,3 +1,6 @@
+# Pull changes from remote repository and restart the server
+git pull
+
 # Activate virtual environment
 if [[ "$VIRTUAL_ENV" = "" ]]
 then
