@@ -114,6 +114,7 @@ class GithubWebhookService:
 
             import subprocess
 
+            subprocess.run(["bash", "./rebuild.sh"])
             subprocess.run(["sudo", "bash", "./deploy.sh"])
 
             print("Done!")
