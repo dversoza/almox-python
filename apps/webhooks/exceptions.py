@@ -1,0 +1,2 @@
+class GithubWebhookValidationException(Exception):
+    pass

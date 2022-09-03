@@ -27,4 +27,5 @@ urlpatterns = [
     path("auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("api/", include(router.urls)),
     path("api/auth/", AlmoxAuthTokenView.as_view(), name="api-token-auth"),
+    path("webhooks/", include("apps.webhooks.urls")),
 ]
