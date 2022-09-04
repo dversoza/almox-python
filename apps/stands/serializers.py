@@ -29,4 +29,4 @@ class StandDetailSerializer(StandSerializer):
     stock = serializers.SerializerMethodField()
 
     def get_stock(self, stand):
-        return stand.transaction_set.get_stock_for_stand(stand=stand)
+        return stand.transaction_set.get_stock_for_stand_grouped_by_product(stand=stand)

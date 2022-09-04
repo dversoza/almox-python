@@ -29,3 +29,14 @@ class ProductSerializer(BaseSerializer):
 
     def get_stock(self, product):
         return product.transaction_set.get_stock_for_product(product=product)
+
+
+class ProductDetailSerializer(ProductSerializer):
+    stand_stocks = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Product
+        fields = ProductSerializer.Meta.fields + ["stand_stocks"]
+
+    def get_stand_stocks(self, product):
+        return product.transaction_set.get_stock_for_product_grouped_by_stand(product)

@@ -1,9 +1,14 @@
+from django.views import View
 from rest_framework import permissions
 
 from apps.core.viewset import AlmoxModelViewSet
 
 from .models import MeasurementUnit, Product
-from .serializers import MeasurementUnitSerializer, ProductSerializer
+from .serializers import (
+    MeasurementUnitSerializer,
+    ProductDetailSerializer,
+    ProductSerializer,
+)
 
 
 class MeasurementUnitViewSet(AlmoxModelViewSet):
@@ -17,8 +22,13 @@ class MeasurementUnitViewSet(AlmoxModelViewSet):
 
 
 class ProductViewSet(AlmoxModelViewSet):
-    serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_serializer_class(self, *args, **kwargs):
+        if self.action == "retrieve":
+            return ProductDetailSerializer
+
+        return ProductSerializer
 
     def get_queryset(self):
         queryset = Product.objects.all()
