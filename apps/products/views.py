@@ -17,6 +17,14 @@ class MeasurementUnitViewSet(AlmoxModelViewSet):
 
 
 class ProductViewSet(AlmoxModelViewSet):
-    queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+
+        query = self.request.query_params.get("query")
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+
+        return queryset

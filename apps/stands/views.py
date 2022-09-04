@@ -12,7 +12,6 @@ class StandViewSet(AlmoxModelViewSet):
     This viewset automatically provides `list`, `create`, `retrieve`, `update` and `destroy` actions.
     """
 
-    queryset = Stand.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
     def get_serializer_class(self, *args, **kwargs):
@@ -20,3 +19,12 @@ class StandViewSet(AlmoxModelViewSet):
             return StandDetailSerializer
 
         return StandSerializer
+
+    def get_queryset(self):
+        queryset = Stand.objects.all()
+
+        query = self.request.query_params.get("query")
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+
+        return queryset

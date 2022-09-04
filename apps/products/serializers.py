@@ -13,11 +13,19 @@ class MeasurementUnitSerializer(BaseSerializer):
 
 class ProductSerializer(BaseSerializer):
     stock = serializers.SerializerMethodField()
-    measurement_unit = MeasurementUnitSerializer()
+    measurement_unit = MeasurementUnitSerializer(read_only=True)
+    measurement_unit_id = serializers.IntegerField(write_only=True)
 
     class Meta:
         model = Product
-        fields = ["id", "name", "description", "measurement_unit", "stock"]
+        fields = [
+            "id",
+            "name",
+            "description",
+            "measurement_unit",
+            "stock",
+            "measurement_unit_id",
+        ]
 
     def get_stock(self, product):
         return product.transaction_set.get_stock_for_product(product=product)
