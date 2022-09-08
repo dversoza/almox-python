@@ -17,12 +17,21 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 # Database settings
+
+import sys
+import oracledb
+
+oracledb.version = "8.3.0"
+sys.modules["cx_Oracle"] = oracledb
+
+oracledb.init_oracle_client()
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.oracle",
+        "NAME": os.getenv("PROD_DB_NAME"),
         "USER": os.getenv("PROD_DB_USER"),
         "PASSWORD": os.getenv("PROD_DB_PASSWORD"),
-        "NAME": os.getenv("PROD_DB_NAME"),
         "OPTIONS": {
             "use_returning_into": False,
         },
