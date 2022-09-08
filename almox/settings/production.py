@@ -19,7 +19,7 @@ CORS_ORIGIN_WHITELIST = (
 # Database settings
 DATABASES = {
     "default": {
-        "ENGINE": 'django.db.backends.mysql',
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": os.getenv("PROD_DB_NAME"),
         "USER": os.getenv("PROD_DB_USER"),
         "PASSWORD": os.getenv("PROD_DB_PASSWORD"),
