@@ -115,7 +115,7 @@ class GithubWebhookService:
             import subprocess
 
             subprocess.run(["bash", "./rebuild.sh"])
-            subprocess.run(["sudo", "bash", "./deploy.sh"])
+            subprocess.run(["sudo", "/bin/systemctl", "restart", "gunicorn.service"])
 
             print("Done!")
 
