@@ -85,12 +85,15 @@ class Command(BaseCommand):
 
         self.admin.groups.add(self.admin_group)
         self.admin.set_password("password")
+        self.admin.save()
 
         self.system.groups.add(self.staff_group)
         self.system.set_password("password")
+        self.system.save()
 
         self.default_user.groups.add(self.default_group)
         self.default_user.set_password("password")
+        self.default_user.save()
 
     def __seed_persons(self):
         # Creates persons
