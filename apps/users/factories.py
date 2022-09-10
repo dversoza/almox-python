@@ -16,8 +16,6 @@ class UserFactory(factory.django.DjangoModelFactory):
     is_staff = False
     is_superuser = False
     is_active = True
-    last_login = fake.date_time_between(start_date="-1y", end_date="now")
-    date_joined = fake.date_time_between(start_date="-1y", end_date="now")
 
 
 class GroupFactory(factory.django.DjangoModelFactory):
