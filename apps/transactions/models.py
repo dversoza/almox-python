@@ -79,7 +79,7 @@ class Transaction(BaseModel):
     class Meta:
         verbose_name = "Movimentação"
         verbose_name_plural = "Movimentações"
-        ordering = ["-created_at", "-updated_at"]
+        ordering = ["-datetime"]
 
     def __str__(self):
         return f"{int(self.quantity)} {self.product.measurement_unit.abbreviation} de {self.product.name} para a Barraca {self.stand.name}"
