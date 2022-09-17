@@ -17,7 +17,7 @@ class PersonViewSet(AlmoxModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        queryset = Person.objects.all()
+        queryset = Person.objects.filter(active=True)
 
         query = self.request.query_params.get("query")
         if query:
@@ -26,3 +26,7 @@ class PersonViewSet(AlmoxModelViewSet):
             )
 
         return queryset
+
+    def perform_destroy(self, instance):
+        instance.active = False
+        instance.save()

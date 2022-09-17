@@ -38,11 +38,12 @@ class Person(BaseModel):
         verbose_name="Usuário",
         related_name="person",
     )
+    active = models.BooleanField(default=True, verbose_name="Ativo")
 
     def __str__(self):
         return self.name
 
     class Meta:
-        ordering = ["name"]
         verbose_name = "Pessoa"
         verbose_name_plural = "Pessoas"
+        ordering = ["name"]
