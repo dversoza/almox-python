@@ -22,8 +22,9 @@ class MeasurementUnit(BaseModel):
 
 class Product(BaseModel):
     name = models.CharField("Nome", max_length=100, unique=True)
+    active = models.BooleanField(default=True, verbose_name="Ativo")
     description = models.TextField(
-        "Descrição", blank=True, help_text="Descrição do produto"
+        "Descrição", blank=True, help_text="Descrição do produto", null=True
     )
     measurement_unit = models.ForeignKey(
         MeasurementUnit, on_delete=models.PROTECT, verbose_name="Unidade de Medida"
