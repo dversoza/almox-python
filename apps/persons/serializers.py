@@ -1,6 +1,7 @@
+from rest_framework import serializers
+
 from apps.core.serializers import BaseSerializer
 from apps.stands.serializers import StandSerializer
-from rest_framework import serializers
 
 from .models import Person
 
@@ -8,7 +9,7 @@ from .models import Person
 class PersonSerializer(BaseSerializer):
     user = serializers.SerializerMethodField()
     stand = StandSerializer(read_only=True)
-    stand_id = serializers.IntegerField(write_only=True)
+    stand_id = serializers.IntegerField(write_only=True, required=False)
 
     class Meta:
         model = Person
