@@ -53,7 +53,7 @@ class TransactionAdmin(BaseAdmin):
                     "person",
                     "quantity",
                     "price",
-                    "observation",
+                    "details",
                 )
             },
         ),

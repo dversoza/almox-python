@@ -1,4 +1,3 @@
-from django.views import View
 from rest_framework import permissions
 
 from apps.core.viewset import AlmoxModelViewSet
