@@ -25,6 +25,10 @@ class TransactionViewSet(AlmoxModelViewSet):
                 | Q(details__icontains=query)
             )
 
+        year = self.request.query_params.get("year")
+        if year:
+            queryset = queryset.filter(datetime__year=year)
+
         return queryset
 
 
