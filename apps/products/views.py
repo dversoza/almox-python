@@ -30,10 +30,14 @@ class ProductViewSet(AlmoxModelViewSet):
         return ProductSerializer
 
     def get_queryset(self):
-        queryset = Product.objects.all()
+        queryset = Product.objects.filter(active=True)
 
         query = self.request.query_params.get("query")
         if query:
             queryset = queryset.filter(name__icontains=query)
 
         return queryset
+
+    def perform_destroy(self, instance):
+        instance.active = False
+        instance.save()
