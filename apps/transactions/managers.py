@@ -10,9 +10,10 @@ class TransactionManager(models.Manager):
                     When(operation="E", then=F("quantity")),
                     When(operation="S", then=-F("quantity")),
                     output_field=FloatField(),
-                )
-            )  # https://stackoverflow.com/questions/45506898/django-annotate-sum-of-a-column-with-filter-on-another-column
-        )  # https://stackoverflow.com/questions/13403609/how-to-group-by-and-aggregate-with-django
+                )  # https://stackoverflow.com/questions/13403609/how-to-group-by-and-aggregate-with-django
+            ),  # https://stackoverflow.com/questions/45506898/django-annotate-sum-of-a-column-with-filter-on-another-column
+            measurement_unit=F("product__measurement_unit__name"),
+        )
 
     def _annotate_stand_stock(self, queryset):
         return queryset.values("stand__name").annotate(
