@@ -15,9 +15,17 @@ class MeasurementUnitViewSet(AlmoxModelViewSet):
     API endpoint that allows measurement units to be viewed or edited.
     """
 
-    queryset = MeasurementUnit.objects.all()
     serializer_class = MeasurementUnitSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        queryset = MeasurementUnit.objects.all()
+
+        query = self.request.query_params.get("query")
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+
+        return queryset
 
 
 class ProductViewSet(AlmoxModelViewSet):
