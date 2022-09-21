@@ -13,7 +13,7 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     "https://catedral.versoza.dev",
     "https://api-catedral.versoza.dev",
-    "http://localhost:5000",
+    "http://localhost:4200",
 )
 
 # Database settings
