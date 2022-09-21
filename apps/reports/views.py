@@ -64,6 +64,13 @@ class ExportCSVStands(APIView):
         stands = Stand.objects.filter(active=True).order_by("name")
 
         for stand in stands:
-            writer.writerow([stand.id, stand.name, stand.manager.name, stand.contact])
+            writer.writerow(
+                [
+                    stand.id,
+                    stand.name,
+                    stand.manager.name if stand.manager else "",
+                    stand.contact,
+                ]
+            )
 
         return response
