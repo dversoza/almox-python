@@ -1,4 +1,3 @@
-""" Module for the Github Webhook View. """
 import codecs
 import csv
 
