@@ -29,6 +29,25 @@ class TransactionType(BaseModel):
         help_text="Descrição do tipo de movimentação",
     )
 
+    default_from_stand = models.ForeignKey(
+        Stand,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="default_to_stand",
+        verbose_name='Padrão para campo "De:"',
+        help_text="Barraca padrão para executar este tipo de movimentação",
+    )
+    default_to_stand = models.ForeignKey(
+        Stand,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="default_from_stand",
+        verbose_name='Padrão para campo "Para:"',
+        help_text="Barraca padrão para receber este tipo de movimentação",
+    )
+
     class Meta:
         verbose_name = "Tipo de movimentação"
         verbose_name_plural = "Tipos de movimentação"
@@ -47,7 +66,16 @@ class Transaction(BaseModel):
         verbose_name="Data e Hora",
         help_text="Data e hora da movimentação",
     )
-    stand = models.ForeignKey(Stand, on_delete=models.CASCADE, verbose_name="Barraca")
+    # TO BE DELETED
+    stand = models.ForeignKey(
+        Stand, on_delete=models.CASCADE, verbose_name="Barraca", null=True, blank=True
+    )
+    from_stand = models.ForeignKey(
+        Stand, on_delete=models.CASCADE, verbose_name="De", related_name="from_stand"
+    )
+    to_stand = models.ForeignKey(
+        Stand, on_delete=models.CASCADE, verbose_name="Para", related_name="to_stand"
+    )
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, verbose_name="Produto"
     )

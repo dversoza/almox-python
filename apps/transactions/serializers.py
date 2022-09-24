@@ -9,17 +9,29 @@ from .models import Transaction, TransactionType
 
 
 class TransactionTypeSerializer(BaseSerializer):
+    default_from_stand = StandSerializer(read_only=True)
+    default_to_stand = StandSerializer(read_only=True)
+
     class Meta:
         model = TransactionType
-        fields = ["id", "operation", "name", "description"]
+        fields = [
+            "id",
+            "operation",
+            "name",
+            "description",
+            "default_from_stand",
+            "default_to_stand",
+        ]
 
 
 class TransactionSerializer(BaseSerializer):
     person = PersonSerializer(read_only=True)
     person_id = serializers.IntegerField(write_only=True)
 
-    stand = StandSerializer(read_only=True)
-    stand_id = serializers.IntegerField(write_only=True)
+    from_stand = StandSerializer(read_only=True)
+    from_stand_id = serializers.IntegerField(write_only=True)
+    to_stand = StandSerializer(read_only=True)
+    to_stand_id = serializers.IntegerField(write_only=True)
 
     product = ProductSerializer(read_only=True)
     product_id = serializers.IntegerField(write_only=True)
@@ -29,4 +41,4 @@ class TransactionSerializer(BaseSerializer):
 
     class Meta:
         model = Transaction
-        fields = "__all__"
+        exclude = ["stand"]
