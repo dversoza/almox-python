@@ -103,7 +103,7 @@ class ExportStockCSV(APIView):
         writer.writerow(headers)
 
         with connection.cursor() as cursor:
-            stock = cursor.execute(
+            cursor.execute(
                 """
                 SELECT
                     s.name Barraca,
@@ -121,8 +121,9 @@ class ExportStockCSV(APIView):
                 GROUP BY s.id, p.id, pm.id
                 """
             )
+            stock = cursor.fetchall()
 
-            for row in stock:
-                writer.writerow(row)
+        for row in stock:
+            writer.writerow(row)
 
         return response
