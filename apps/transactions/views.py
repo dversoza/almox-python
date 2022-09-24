@@ -8,7 +8,6 @@ from .serializers import TransactionSerializer, TransactionTypeSerializer
 
 
 class TransactionViewSet(AlmoxModelViewSet):
-    queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
