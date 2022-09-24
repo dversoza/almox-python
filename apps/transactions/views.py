@@ -33,12 +33,12 @@ class TransactionViewSet(AlmoxModelViewSet):
 
         start_date = self.request.query_params.get("start_date")
         if start_date:
-            start_date = datetime.fromisoformat(start_date)
+            start_date = datetime.fromisoformat(start_date.replace('Z', '+00:00'))
             queryset = queryset.filter(datetime__gte=start_date)
 
         end_date = self.request.query_params.get("end_date")
         if end_date:
-            end_date = datetime.fromisoformat(end_date)
+            end_date = datetime.fromisoformat(end_date.replace('Z', '+00:00'))
             queryset = queryset.filter(datetime__lte=end_date)
 
         return queryset
